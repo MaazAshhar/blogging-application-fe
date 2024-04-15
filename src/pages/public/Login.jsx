@@ -3,9 +3,9 @@ import { Formik, Form, Field } from "formik";
 import { LoginValidation } from "../../auth/LoginValidation";
 import image from "../../assets/images/kelly-sikkema-IkHwu5xLXxs-unsplash.jpg";
 import { Link, useNavigate } from "react-router-dom";
-import { loginUser } from "../../Services/user_service";
 import { toast } from "react-toastify";
 import { doLogin } from "../../auth";
+import { loginUser } from "../../services/user_service";
 
 const Login = () => {
   const navigate = useNavigate();

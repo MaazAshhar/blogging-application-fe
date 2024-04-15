@@ -18,19 +18,19 @@ export const doLogin= async (res,next)=>{
 // get the details of logged in user
 
 export const getCurrentUserDetails = async ()=>{
-    if(isLoggedIn){
+    if(isLoggedIn()){
         return JSON.parse(localStorage.getItem("user"));
     }
-    else return JSON.parse("no user looged in");
+    return null;
 }
 
 //get token 
 
 export const getToken =()=>{
-    if(isLoggedIn){
+    if(isLoggedIn()){
         return JSON.parse(localStorage.getItem("token"));
     }
-    else return JSON.parse("no user logged in");
+    return null;
 }
 
 // log out current user

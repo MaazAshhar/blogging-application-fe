@@ -3,7 +3,7 @@ import { Formik, Form, Field } from "formik";
 import { SignUpValidation } from "../../auth/SignUpValidation";
 import image from "../../assets/images/kelly-sikkema-IkHwu5xLXxs-unsplash.jpg";
 import { Link, useNavigate } from "react-router-dom";
-import { registerUser } from "../../Services/user_service";
+import { registerUser } from "../../services/user_service";
 import { toast } from "react-toastify";
 const SignUp = () => {
   const navigate = useNavigate();
