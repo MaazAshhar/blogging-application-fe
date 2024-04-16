@@ -5,8 +5,10 @@ import JoditEditor from "jodit-react";
 import { loadAllCategories } from "../../services/category_service";
 import { createPost } from "../../services/post_service";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -24,6 +26,7 @@ const CreatePost = () => {
     createPost(category, body)
         .then(() => {
             toast.success('New post created');
+            navigate('/feed');
         })
         .catch((error) => {
             console.log(error);

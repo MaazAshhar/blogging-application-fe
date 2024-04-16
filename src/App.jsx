@@ -24,7 +24,7 @@ function App() {
             <Route path="feed" element={<Feed getPost={getAllPost} />} />
             <Route path="profile" element={<ProfileInfo />} />
             <Route path="create-post" element={<CreatePost />} />
-            <Route path="my-post" element={<Feed getPost={getPostByUser} />} />
+            <Route path="my-post" element={<Feed getPost={getPostByUser} wantDeleteButton={true} />} />
           </Route>
         </Routes>
       </BrowserRouter>

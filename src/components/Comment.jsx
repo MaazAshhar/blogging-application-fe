@@ -1,21 +1,13 @@
 import React, { useState } from 'react'
 import { IoMdSend } from 'react-icons/io';
-import { addComment } from '../services/post_service';
-import { useNavigate } from 'react-router-dom';
 
-const Comment = ({comments, postId}) => {
-    const navigate = useNavigate();
+const Comment = ({comments, postId, addCommentToPost}) => {
     const [myComment, setMyComment] = useState('');
     const [allComments, setAllComments] = useState(false);
     const handleSubmit = () => {
         const body = {content: myComment};
-        addComment(postId, body)
-            .then(({data}) => {
-                setMyComment('');
-                comments.push(data);
-                navigate('/feed');
-            })
-            .catch((error) => console.error(error));
+        addCommentToPost(postId, body);
+        setMyComment('');
     }
   return (
     <>

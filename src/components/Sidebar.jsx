@@ -1,8 +1,13 @@
 import React from 'react'
+import { FiLogOut } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router-dom'
+import { doLogout } from '../auth';
 
 const Sidebar = ({children}) => {
     const navigate = useNavigate();
+    const handleLogout = () => {
+        doLogout(() => navigate('/'));
+    }
   return (
     <>
         <div className="flex flex-col sm:flex-row">
@@ -16,6 +21,7 @@ const Sidebar = ({children}) => {
                     <Link to="/feed">Feed</Link>
                     <Link to="/create-post">Create Post</Link>
                     <Link to="/my-post">My Post</Link>
+                    <button onClick={handleLogout}><FiLogOut /></button>
                 </div>
             </div>
             <div className="w-full overflow-y-scroll max-h-screen">
