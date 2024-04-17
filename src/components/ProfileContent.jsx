@@ -12,7 +12,7 @@ const ProfileContent = ({user}) => {
     <div>
         <div className="flex justify-start items-center gap-4">
             <h1 className="font-medium">email:</h1>
-            <p className="">{user.name}</p>
+            <p className="">{user.email}</p>
         </div>
     </div>
     <div>

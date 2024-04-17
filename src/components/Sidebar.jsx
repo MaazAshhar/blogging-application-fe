@@ -24,7 +24,7 @@ const Sidebar = ({children}) => {
                     <button onClick={handleLogout}><FiLogOut /></button>
                 </div>
             </div>
-            <div className="w-full overflow-y-scroll max-h-screen">
+            <div className="w-full h-full sm:h-screen">
                 {children}
             </div>
         </div>

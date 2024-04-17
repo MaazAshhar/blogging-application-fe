@@ -5,18 +5,26 @@ import { doLogout } from "../../auth";
 import { toast } from "react-toastify";
 import { addComment, deletePost } from "../../services/post_service";
 import swal from "sweetalert";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const Feed = ({ getPost, wantDeleteButton = false }) => {
-  const parentFeed = useRef();
   const [allPost, setAllPost] = useState([]);
+  const [pageNumber, setPageNumber] = useState(0);
+  const [lastPage, setLastPage] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
     fetchData();
   }, []);
-  const fetchData = () => {
-    getPost()
+  const fetchData = (pageNumber=0) => {
+    getPost(pageNumber)
       .then(({ data }) => {
-        setAllPost(data.content);
+        if (pageNumber === 0) {
+          setAllPost(data.content);
+        } else {
+          setAllPost([...allPost, ...data.content]);
+        }
+        setPageNumber(data.pageNumber);
+        setLastPage(data.lastPage);
       })
       .catch((error) => {
         if (error.response.status === 401) {
@@ -37,6 +45,7 @@ const Feed = ({ getPost, wantDeleteButton = false }) => {
       deletePost(postId)
         .then(({data}) => {
           toast.success('Post deleted successfully');
+          setPageNumber(0);
           fetchData();
         })
         .catch(error => console.error(error));
@@ -46,9 +55,14 @@ const Feed = ({ getPost, wantDeleteButton = false }) => {
   const addCommentToPost = async(postId, body) => {
     addComment(postId, body)
         .then(({data}) => {
+          setPageNumber(0);
           fetchData();
         })
         .catch((error) => console.error(error));
+  }
+
+  const infiniteScroll = () => {
+    fetchData(pageNumber+1);
   }
 
   return (
@@ -63,21 +77,30 @@ const Feed = ({ getPost, wantDeleteButton = false }) => {
           </button>
         </div>
       )}
-      <div className="flex flex-col gap-6 my-5" ref={parentFeed}>
+      <div id="scrollableDiv" className="flex flex-col gap-6 my-3 overflow-y-scroll">
         {/* all post */}
-        {allPost.map((post, index) => (
-            <FeedContent
-              title={post.title}
-              content={post.content}
-              user={post.user}
-              comments={post.comments}
-              postId={post.postId}
-              wantDeleteButton={wantDeleteButton}
-              handleDelete={handleDelete}
-              addCommentToPost={addCommentToPost}
-              key={index}
-            />
-          ))}
+        <InfiniteScroll
+          dataLength={allPost.length}
+          next={infiniteScroll}
+          hasMore={!lastPage}
+          loader={<h4>Loading...</h4>}
+          scrollableTarget="scrollableDiv"
+          scrollThreshold="200px"
+        >
+          {allPost.map((post, index) => (
+              <FeedContent
+                title={post.title}
+                content={post.content}
+                user={post.user}
+                comments={post.comments}
+                postId={post.postId}
+                wantDeleteButton={wantDeleteButton}
+                handleDelete={handleDelete}
+                addCommentToPost={addCommentToPost}
+                key={index}
+              />
+            ))}
+        </InfiniteScroll>
       </div>
     </>
   );

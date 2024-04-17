@@ -32,7 +32,7 @@ const FeedContent = ({
   return (
     <div
       ref={post}
-      className="flex flex-col gap-2 p-4 rounded-md mx-auto shadow-md shadow-gray-300 w-4/5 ">
+      className="flex flex-col gap-2 my-1 p-4 rounded-md mx-auto shadow-md shadow-gray-300 w-4/5 ">
       {/* top section of feed content */}
       <div className="flex justify-between items-center">
         {/* profile image and username section */}

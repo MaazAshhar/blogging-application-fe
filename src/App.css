@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    /* Customize the scrollbar width */
+    width: 10px;
+    @media screen and (max-width: 640px) {
+        width: 2px;
+    }
+}
+
+::-webkit-scrollbar-track {
+    /* Customize the scrollbar track */
+    border-radius: 10px;
+    border: 1px solid gainsboro;
+}
+
+::-webkit-scrollbar-thumb {
+    /* Customize the scrollbar thumb */
+    background-color: rgb(253 186 116);
+    border-radius: 10px;
+}
+
+#scrollableDiv{
+    height: calc(100vh - 40px);
+
+    @media screen and (max-width: 640px) {
+        height: calc(100vh - 200px);
+    }
+
+    @media screen and (max-width: 500px) {
+        height: calc(100vh - 190px);
+    }
+
+    @media screen and (max-width: 400px) {
+        height: calc(100vh - 150px);
+    }
+}
