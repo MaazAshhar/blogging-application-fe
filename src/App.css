@@ -24,7 +24,7 @@
     border-radius: 10px;
 }
 
-#scrollableDiv{
+.main-content{
     height: calc(100vh - 40px);
 
     @media screen and (max-width: 640px) {

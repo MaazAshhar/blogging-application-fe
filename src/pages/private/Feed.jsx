@@ -77,7 +77,7 @@ const Feed = ({ getPost, wantDeleteButton = false }) => {
           </button>
         </div>
       )}
-      <div id="scrollableDiv" className="flex flex-col gap-6 my-3 overflow-y-scroll">
+      <div id="scrollableDiv" className="flex flex-col gap-6 my-3 overflow-y-scroll main-content">
         {/* all post */}
         <InfiniteScroll
           dataLength={allPost.length}
