@@ -8,7 +8,7 @@ export const createPost = async (categoryId, body) => {
     return res;
 }
 
-export const getAllPost = async (pageNumber=0,pageSize=2) => {
+export const getAllPost = async (pageNumber=0,pageSize=5) => {
     const res = await privateAxios.get(`posts?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=addedDate&sortDir=false`);
     return res;
 }
@@ -19,7 +19,7 @@ export const addComment = async (postId, body) => {
     return res;
 }
 
-export const getPostByUser = async (pageNumber=0,pageSize=2) => {
+export const getPostByUser = async (pageNumber=0,pageSize=5) => {
     const user = await getCurrentUserDetails();
     const res = await privateAxios.get(`user/${user.id}/posts?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=addedDate&sortDir=false`);
     return res;
